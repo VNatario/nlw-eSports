@@ -97,17 +97,6 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
@@ -172,6 +161,16 @@ sketch
 
 .expo
 __generated__
+
+.expo/
+dist/
+npm-debug.*
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
 ### ReactNative.Xcode Stack ###
 ## User settings
