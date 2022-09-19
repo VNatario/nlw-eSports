@@ -1,6 +1,7 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 import { convertHoursStringToMinutes } from "./utils/convert-hours-string-to-minutes";
+import { convertMinutesToHourString } from "./utils/convert-minutes-to-hours";
 
 const app = express();
 
@@ -72,6 +73,8 @@ app.get("/games/:id/ads", async (request, response) => {
       return {
         ...ad,
         weekDays: ad.weekDays.split(","),
+        hourStart: convertMinutesToHourString(ad.hourStart),
+        hourEnd: convertMinutesToHourString(ad.hourEnd),
       };
     })
   );
