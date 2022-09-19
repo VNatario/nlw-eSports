@@ -2,9 +2,13 @@ import express from "express";
 import { PrismaClient } from "@prisma/client";
 
 const app = express();
+
+app.use(express.json());
+
 const prisma = new PrismaClient({
   log: ["query"],
 });
+
 app.listen(3333, () => console.log("Rodando na porta 3333..."));
 
 app.get("/games", async (request, response) => {
@@ -20,8 +24,24 @@ app.get("/games", async (request, response) => {
   return response.json(games);
 });
 
-app.post("/ads", (request, response) => {
-  return response.status(201).json([]);
+app.post("/games/:id/ads", async (request, response) => {
+  const gameId = request.params.id;
+  const body = request.body;
+
+  const ad = await prisma.ad.create({
+    data: {
+      gameId,
+      name: body.name,
+      discord: body.discord,
+      yearsPlaying: body.yearsPlaying,
+      weekDays: body.weekDays.join(","),
+      hourStart: body.hourStart,
+      hourEnd: body.hourEnd,
+      useVoiceChannel: body.useVoiceChannel,
+      createdAt: body.createdAt,
+    },
+  });
+  return response.status(201).json(body);
   //201 algo foi criado
 });
 

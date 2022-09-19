@@ -2,9 +2,28 @@
 
 ## Entidades
 
+- Game
+- Ad
+
 ### Game
 
+- id
+- title
+- bannerUrl
+- ads
+
 #### Ad
+
+- id
+- gameId
+- name
+- yearsPlaying
+- discord
+- weekDays
+- hourStart
+- hourEnd
+- useVoiceChannel
+- createdAt
 
 ## Caso de uso
 
