@@ -57,6 +57,7 @@ app.get("/games/:id/ads", async (request, response) => {
   const gameId = request.params.id;
 
   const ads = await prisma.ad.findMany({
+    //selecionando campos para retorno
     select: {
       id: true,
       name: true,
@@ -66,9 +67,12 @@ app.get("/games/:id/ads", async (request, response) => {
       hourStart: true,
       hourEnd: true,
     },
+    //onde gameId = gameId
     where: {
       gameId,
     },
+    //Ordenando de forma decrescente de acordo com createdAt
+    //anuncios mais recentes na frente
     orderBy: {
       createdAt: "desc",
     },
@@ -89,6 +93,7 @@ app.get("/games/:id/ads", async (request, response) => {
 app.get("/ads/:id/discord", async (request, response) => {
   const adId = request.params.id;
 
+  //Encontrando um unico AD caso n encontrar dispara um erro(Throw)
   const ad = await prisma.ad.findUniqueOrThrow({
     select: {
       discord: true,
