@@ -3,4 +3,5 @@ export function convertMinutesToHourString(minutesAmount: number) {
   const minutes = minutesAmount % 60;
 
   return `${String(hour).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+  //padStart(2, "0") adiciona zero na frente caso n tenha dois caracteres
 }
